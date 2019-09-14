@@ -11,6 +11,12 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_services/alertify.service';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { MemberListComponent } from './member-list/member-list.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -18,6 +24,9 @@ import { BsDropdownModule } from 'ngx-bootstrap';
     NavComponent,
     HomeComponent,
     RegisterComponent,
+    MemberListComponent,
+    ListsComponent,
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,12 +35,14 @@ import { BsDropdownModule } from 'ngx-bootstrap';
     HttpClientModule,
     //Forms Module allows us to use ngModel
     FormsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     //This is the place where we should import our Services
     AuthService,
-    AlertifyService
+    AlertifyService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
